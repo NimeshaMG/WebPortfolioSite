@@ -6,13 +6,20 @@
             background-repeat: no-repeat;
             background-size: cover;
         }
+
+        .jumbo-custom {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
     </style>
 
     <body class="custom-body">
 
         <%- include ('partials/navbar.ejs') %>
 
-            <div class="jumbotron mt-5" style="text-align: center;">
+            <div class="jumbotron jumbo-custom mt-5">
 
                 <div class="content">
 
@@ -20,6 +27,28 @@
 
                     <p>Hello! This is the home page of my portfolio website</p>
                     <p>Discover more about me by exploring the following sections</p>
+
+                    <p class="mt-5">Discover more about me by exploring the following sections</p>
+
+                    <div class="row">
+
+                        <a href="/about" style="width: 150px;">
+                            <button class="btn btn-success" style="width: 100%;" >About Me</button>
+                        </a>
+                        
+                        <a href="/projects" style="width: 150px;">
+                            <button class="btn btn-success" style="width: 100%;">Projects</button>
+                        </a>
+                        
+                        <a href="/services" style="width: 150px;">
+                            <button class="btn btn-success" style="width: 100%;">Services</button>
+                        </a>
+
+                        <a href="/contact" style="width: 150px;">
+                            <button class="btn btn-success" style="width: 100%;">Contact</button>
+                        </a>
+                        
+                    </div>
 
                 </div>
 
