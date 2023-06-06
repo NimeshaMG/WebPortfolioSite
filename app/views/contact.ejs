@@ -25,10 +25,9 @@
             <br>
 
             <a href="/">
-              <button class="btn btn-success" onclick="return redirectToHomePage">Submit</button>
+              <button class="btn btn-success"  href="/">Submit</button><!--onclick="return false-->
+              <!--<a class="button" href="/">Submit</button></a>-->
             </a>
-
-            
           </form>
         </div>
 
@@ -41,11 +40,3 @@
       </div>
 
       <%- include ('partials/footer.ejs') %><!-- Include the footer partial -->
-      <script>
-        function redirectToHomePage() {
-          window.location.href = "/"; // Redirect to the home page
-          return false; // Prevent the default form submission behavior
-        }
-      </script>
-  </body>
-  
