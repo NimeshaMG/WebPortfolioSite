@@ -1,8 +1,9 @@
-<%- include ('partials/header.ejs') %>
+<%- include ('partials/header.ejs') %><!-- Include the header partial -->
 
   <body>
 
-    <%- include ('partials/navbar.ejs') %>
+    <%- include ('partials/navbar.ejs') %><!-- Include the navbar partial -->
+
 
       <div class="jumbotron" style="text-align: center;">
         <h1 class="header">Contact Me</h1>
@@ -24,8 +25,10 @@
             <br>
 
             <a href="/">
-              <button class="btn btn-success" onclick="return false">Submit</button>
+              <button class="btn btn-success" onclick="return redirectToHomePage">Submit</button>
             </a>
+
+            
           </form>
         </div>
 
@@ -37,4 +40,12 @@
 
       </div>
 
-      <%- include ('partials/footer.ejs') %>
+      <%- include ('partials/footer.ejs') %><!-- Include the footer partial -->
+      <script>
+        function redirectToHomePage() {
+          window.location.href = "/"; // Redirect to the home page
+          return false; // Prevent the default form submission behavior
+        }
+      </script>
+  </body>
+  
