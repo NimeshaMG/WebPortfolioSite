@@ -1,0 +1,44 @@
+<%- include ('partials/header.ejs') %><!-- Include the header partial -->
+
+  <body>
+
+    <%- include ('partials/navbar.ejs') %><!-- Include the navbar partial -->
+
+
+      <div class="jumbotron" style="text-align: center;">
+        <h1 class="header">Contact Me</h1>
+
+        <p>Get in touch with me using the form below:</p>
+
+        <div style="display: flex; justify-content: center; align-items: center;">
+          <form action="/" style="width: 400px;">
+            <label for="name">Name:</label>
+            <input class="form-control" type="text" id="name" name="name" required>
+            <br>
+
+            <label for="email">Email:</label>
+            <input class="form-control" type="email" id="email" name="email" required>
+            <br>
+
+            <label for="message">Message:</label>
+            <textarea class="form-control" id="message" name="message" required></textarea>
+            <br>
+
+            <a href="/">
+              <button class="btn btn-success"  href="/">Submit</button><!-- Button to submit the form -->
+            </a>
+             
+            </a>
+          </form>
+        </div>
+
+        <br>
+
+        <p>You can also reach out to me directly using the following contact information:</p>
+
+        <p>Email: mrnimesha74@gmail.com<br>Phone: +16474828592<br>Address: 48 Goulden Crescent, Scarborough, Canada</p>
+
+      </div>
+
+      <%- include ('partials/footer.ejs') %><!-- Include the footer partial -->
+      

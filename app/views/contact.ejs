@@ -1,43 +1,81 @@
-<%- include ('partials/header.ejs') %><!-- Include the header partial -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Business Contacts List</title>
+  <link rel="stylesheet" href="css/contact.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Business Contact Lists</h1>
+    <table id="contactsTable">
+      <tr>
+        <th class="contact-name">Contact Name</th>
+        <th class="contact-number">Contact Number</th>
+        <th class="email-address">Email Address</th>
+      </tr>
+      <% contacts.sort((a, b) => a.name.localeCompare(b.name)); // Sort contacts array %>
+      <% contacts.forEach(function(contact) { %>
+      <tr id="<%= contact._id %>">
+        <td class="contact-name"><%= contact.name %></td>
+        <td class="contact-number"><%= contact.phoneNumber %></td>
+        <td class="email-address"><%= contact.email %></td>
+        <td>
+          <button class="updateBtn" data-id="<%= contact._id %>"><i class="fa fa-pen fa-lg" style="color: #ffffff; background-color: #15afd9; padding: 6px; border-radius: 50%;"></i></button>
+        </td>
+        <td>
+          <button class="deleteBtn" data-id="<%= contact._id %>"><i class="fa fa-trash-alt fa-lg" style="color: #ffffff; background-color: #ab0919; padding: 6px; border-radius: 50%;"></i></button>
+        </td>  
+      </tr>
+      <% }); %>
+    </table>
+  </div>
 
-  <body>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const deleteButtons = document.querySelectorAll('.deleteBtn');
 
-    <%- include ('partials/navbar.ejs') %><!-- Include the navbar partial -->
+      deleteButtons.forEach((deleteBtn) => {
+        deleteBtn.addEventListener('click', (event) => {
+          const contactId = deleteBtn.dataset.id;
 
+          if (!contactId) {
+            console.error('Invalid contact ID');
+            return;
+          }
 
-      <div class="jumbotron" style="text-align: center;">
-        <h1 class="header">Contact Me</h1>
+          fetch(`/delete/${contactId}`, {
+            method: 'DELETE',
+          })
+            .then((response) => {
+              if (response.ok) {
+                event.target.closest('tr').remove();
+              } else {
+                throw new Error('Failed to delete the contact');
+              }
+            })
+            .catch((error) => {
+              console.error('Error deleting contact:', error);
+            });
+        });
+      });
+    });
 
-        <p>Get in touch with me using the form below:</p>
+    const updateButtons = document.querySelectorAll('.updateBtn');
 
-        <div style="display: flex; justify-content: center; align-items: center;">
-          <form action="/" style="width: 400px;">
-            <label for="name">Name:</label>
-            <input class="form-control" type="text" id="name" name="name" required>
-            <br>
+    updateButtons.forEach((updateBtn) => {
+      updateBtn.addEventListener('click', () => {
+        const contactId = updateBtn.dataset.id;
 
-            <label for="email">Email:</label>
-            <input class="form-control" type="email" id="email" name="email" required>
-            <br>
+        if (!contactId) {
+          console.error('Invalid contact ID');
+          return;
+        }
 
-            <label for="message">Message:</label>
-            <textarea class="form-control" id="message" name="message" required></textarea>
-            <br>
-
-            <a href="/">
-              <button class="btn btn-success"  href="/">Submit</button><!-- Button to submit the form -->
-            </a>
-             
-            </a>
-          </form>
-        </div>
-
-        <br>
-
-        <p>You can also reach out to me directly using the following contact information:</p>
-
-        <p>Email: mrnimesha74@gmail.com<br>Phone: +16474828592<br>Address: 48 Goulden Crescent, Scarborough, Canada</p>
-
-      </div>
-
-      <%- include ('partials/footer.ejs') %><!-- Include the footer partial -->
+        window.location.href = `/update/${contactId}`;
+      });
+    });
+  </script>
+</body>
+</html>
